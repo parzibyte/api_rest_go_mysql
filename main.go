@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -26,6 +27,15 @@ func main() {
 		Genre: "No sé",
 		Year:  2012,
 	})
+	deleteVideoGame(1)
+	updateVideoGame(VideoGame{
+		Id:    2,
+		Name:  "New name",
+		Genre: "New genre",
+		Year:  2222,
+	})
+	fmt.Println(getVideoGames())
+	fmt.Println(getVideoGameById(2))
 	// Define routes
 	router := mux.NewRouter()
 	setupRoutes(router)
