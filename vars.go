@@ -8,10 +8,10 @@ import (
 
 var _ = godotenv.Load(".env") // Cargar del archivo llamado ".env"
 var (
-	CadenaConexionBaseDeDatos = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
-		os.Getenv("usuario"),
+	ConnectionString = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
+		os.Getenv("user"),
 		os.Getenv("pass"),
 		os.Getenv("host"),
-		os.Getenv("puerto"),
-		os.Getenv("nombre"))
+		os.Getenv("port"),
+		os.Getenv("db_name"))
 )

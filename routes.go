@@ -7,11 +7,11 @@ import (
 	"net/http"
 )
 
-func configurarRutas(enrutador *mux.Router) {
+func setupRoutes(enrutador *mux.Router) {
 
 	enrutador.HandleFunc("/hola", func(w http.ResponseWriter, r *http.Request) {
 		respuesta := "Hola mundo"
-		_, err := obtenerBd()
+		_, err := getDB()
 		if err == nil {
 			json.NewEncoder(w).Encode(respuesta)
 		} else {
