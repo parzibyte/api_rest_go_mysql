@@ -6,8 +6,7 @@ import (
 	"net/http"
 )
 
-//TODO: replace "GET" with http.MethodGet and so on
-func setupRoutes(router *mux.Router) {
+func setupRoutesForVideoGames(router *mux.Router) {
 
 	router.HandleFunc("/videogames", func(w http.ResponseWriter, r *http.Request) {
 		videoGames, err := getVideoGames()
@@ -16,7 +15,7 @@ func setupRoutes(router *mux.Router) {
 		} else {
 			respondWithError(err, w)
 		}
-	}).Methods("GET")
+	}).Methods(http.MethodGet)
 	router.HandleFunc("/videogame/{id}", func(w http.ResponseWriter, r *http.Request) {
 		idAsString := mux.Vars(r)["id"]
 		id, err := stringToInt64(idAsString)
@@ -31,7 +30,7 @@ func setupRoutes(router *mux.Router) {
 		} else {
 			respondWithSuccess(videogame, w)
 		}
-	}).Methods("GET")
+	}).Methods(http.MethodGet)
 
 	router.HandleFunc("/videogame", func(w http.ResponseWriter, r *http.Request) {
 		// Declare a var so we can decode json into it

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
@@ -21,34 +20,23 @@ func main() {
 			return
 		}
 	}
-	createVideoGame(VideoGame{
-		Id:    0,
-		Name:  "Mario xd",
-		Genre: "No sé",
-		Year:  2012,
-	})
-	deleteVideoGame(1)
-	updateVideoGame(VideoGame{
-		Id:    2,
-		Name:  "New name",
-		Genre: "New genre",
-		Year:  2222,
-	})
-	fmt.Println(getVideoGames())
-	fmt.Println(getVideoGameById(2))
 	// Define routes
 	router := mux.NewRouter()
-	setupRoutes(router)
-	// Setup and start server
-	direccion := ":8000"
+	setupRoutesForVideoGames(router)
+	// .. here you can define more routes
+	// ...
+	// fore xample setupRoutesForGenreS(router)
 
-	servidor := &http.Server{
+	// Setup and start server
+	port := ":8000"
+
+	server := &http.Server{
 		Handler: router,
-		Addr:    direccion,
-		// Timeouts para evitar que el servidor se quede "colgado" por siempre
+		Addr:    port,
+		// timeouts so the server never waits forever...
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	log.Printf("Server started at %s", direccion)
-	log.Fatal(servidor.ListenAndServe())
+	log.Printf("Server started at %s", port)
+	log.Fatal(server.ListenAndServe())
 }
