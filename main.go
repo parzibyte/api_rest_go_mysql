@@ -48,7 +48,7 @@ func main() {
 	setupRoutesForVideoGames(router)
 	// .. here you can define more routes
 	// ...
-	// fore xample setupRoutesForGenreS(router)
+	// for example setupRoutesForGenres(router)
 
 	// Setup and start server
 	port := ":8000"
